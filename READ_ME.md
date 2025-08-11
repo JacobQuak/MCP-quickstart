@@ -143,16 +143,12 @@ echo '{"tool":"hello","name":"Alice"}' | python -m src.server
 ---
 
 ## 🔎 Inspector gebruiken
-1. Zorg dat je server stdout/stderr logt.
-2. Voeg in Cursor een **Tasks/Run Configuration** toe:
-   - Command: `python -m src.server`
-   - Working dir: projectroot
-   - Env: `PYTHONUNBUFFERED=1`
-3. Stuur JSON-requests:
-   ```bash
-   echo '{"tool":"hello"}' | python -m src.server
-   ```
-4. Gebruik debug-breakpoints in Cursor.
+1. Wanneer je mcp[cli] hebt geïnstalleerd in je terminal; typ *mcp dev [NAAM .py bestand]* in je terminal. (Zorg dat alle 
+2. Bij de vraag *ok to proceed [y]?* typ y
+3. Als je bent geredirect naar de pagina van de inspector, navigeer je naar tools (zie screenshot) 
+<img width="1468" height="59" alt="image" src="https://github.com/user-attachments/assets/1ca56b06-12cc-4539-90ff-21350a6aed40" />
+4. Klik op list tools. Hier staan alle tools van je gecreëerde MCP server.
+5. Selecteer één van je tools en je kunt hem testen in de inspector omgeving.  
 
 ---
 
