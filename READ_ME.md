@@ -1,7 +1,7 @@
 # MCP-server met UV + Cursor
 
 ## 🎯 Doel
-In dit project initialiseren we een **MCP-server** (Model Context Protocol), werken we met **UV** (package & venv manager), en genereren we **Python tools** die je vanuit Cursor AI/Dev kunt bouwen en testen. Tot slot koppelen we de server via de desktop-app (“Cloud AI”/Claude Desktop) door de **Developer Config** te bewerken.
+In dit project initialiseren we een **MCP-server** (Model Context Protocol), werken we met **UV** (package & venv manager), en genereren we **Python tools** die je vanuit Cursor AI/Dev kunt bouwen en testen. Tot slot koppelen we de server via de desktop-app (Claude Desktop) door de **Developer Config** te bewerken.
 
 ---
 
@@ -10,7 +10,7 @@ In dit project initialiseren we een **MCP-server** (Model Context Protocol), wer
 - Python 3.10+ geïnstalleerd
 - **UV** geïnstalleerd (snelste Python package/venv manager)
 - Cursor AI (of je editor naar keuze)
-- (Optioneel) Claude/Cloud Desktop met MCP-client
+- (Optioneel) Claude Desktop met MCP-client
 
 ### UV installeren
 ```bash
