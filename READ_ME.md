@@ -157,7 +157,7 @@ echo '{"tool":"hello","name":"Alice"}' | python -m src.server
 ---
 
 ## 🖥️ Cloud/Claude Desktop Configuratie
-**Voorbeeldconfig:**
+**Voorbeeldconfig template:**
 ```json
 {
   "mcpServers": {
@@ -174,7 +174,22 @@ echo '{"tool":"hello","name":"Alice"}' | python -m src.server
   }
 }
 ```
-
+**Voorbeeldconfig CBS:**
+```json
+{
+  "mcpServers": {
+    "cbsmcp": {
+      "command": "/Users/jacobquak/CBSMCP/.venv/bin/python3",
+      "args": ["/Users/jacobquak/CBSMCP/cbs.py", "--serve"],
+      "cwd": "/Users/jacobquak/CBSMCP",
+      "env": {
+        "PYTHONPATH": "/Users/jacobquak/CBSMCP",
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  }
+}
+```
 ---
 
 ## 🧩 Extra tool aanmaken
