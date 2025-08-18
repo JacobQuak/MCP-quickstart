@@ -1,6 +1,6 @@
 ## 🚧 Basis MCP-server opzetten in Cursor (stap-voor-stap)
 
-In deze sectie maak je in **Cursor** een minimale MCP-server die via **stdio** draait. We gebruiken een simpele dispatcher en testen alles met **`mcp inspector`** uit `mcp[cli]`.
+In deze sectie maak je in **Cursor** een minimale MCP-server die via **stdio** draait. We gebruiken een simpele dispatcher en testen alles met 'mcp inspector`** uit `mcp[cli]`.
 
 ### 1) Project & venv (UV) in Terminal
 ```bash
