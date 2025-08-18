@@ -39,10 +39,10 @@ uv venv
 # 4) venv activeren
 # macOS/Linux:
 source .venv/bin/activate
-# (Windows PowerShell: .venv\Scripts\Activate.ps1)
+
 
 # 5) Basispakketten (pas gerust aan)
-uv add uv-add-mcp-cli
+uv add 'mcp[cli]'
 
 # (optioneel)
 # uv add mcp mcp-server
