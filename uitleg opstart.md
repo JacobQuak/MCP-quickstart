@@ -6,7 +6,6 @@ In dit project initialiseren we een **MCP-server** (Model Context Protocol), wer
 ---
 
 ## 📦 Vereisten
-- macOS of Linux (Windows kan via WSL2)
 - Python 3.10+ geïnstalleerd
 - **UV** geïnstalleerd (snelste Python package/venv manager)
 - Cursor AI (of je editor naar keuze)
