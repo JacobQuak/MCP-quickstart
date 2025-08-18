@@ -285,16 +285,6 @@ mcp-server = "src.server:run_server"
 
 ---
 
-## 🔄 Git-commando’s
-```bash
-git add .
-git commit -m "Init MCP server scaffold (UV + tools + server)"
-git remote add origin <repo-url>
-git push -u origin main
-```
-
----
-
 ## 🧯 Troubleshooting
 - **Server start niet:** check `command` pad en of `.venv` geactiveerd is.
 - **Modules niet gevonden:** run `source .venv/bin/activate` en installeer opnieuw.
