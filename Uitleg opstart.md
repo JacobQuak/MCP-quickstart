@@ -34,3 +34,34 @@ my-mcp/
 │     └─ dev_hello.py       # voorbeeldtool
 ├─ pyproject.toml
 └─ README.md (optioneel)
+```
+### 3) Tools 
+Je kunt nu onder 'dev_hello.py' tools toevoegen. Cursor is hierbij handig aangezien het ondersteuning biedt bij het genereren van juiste code die de tools kunnnen executeren. 
+
+Hierbij is het aan te raden om in markdown een richting per tool aan te geven. Een voorbeeld uit een eerder gemaakte mcp tool:
+```text
+    """Convenience wrapper for CPI (inflation) figures.
+
+    Parameters
+    ----------
+    period:
+        Period label understood by dataset ``84649NED``.
+        Accepts either a StatLine *Period* code (e.g. ``2024M06``)
+        **or** Dutch full‑month description such as ``\"december 2024\"``.
+
+    Returns
+    -------
+    str
+        The CPI index figure for the requested period or an error message.
+
+    Notes
+    -----
+    * **Dataset:** ``84649NED`` – *Consumer price index (2015 = 100)*.
+    * Period codes are documented by CBS and follow formats like
+      ``YYYYMmm`` (monthly) or ``YYYY`` (annual).
+    """
+```
+
+
+
+
