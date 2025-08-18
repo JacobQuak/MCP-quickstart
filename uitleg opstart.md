@@ -98,35 +98,90 @@ def run(name: str = "world") -> str:
 
 ## 🧠 MCP-server entrypoint
 
-**Voorbeeld: `src/server.py`**
+**Voorbeeld: `cbs.py`**
 ```python
-from typing import Any, Dict
-from tools.dev_hello import run as hello_run
+from __future__ import annotations
 
-def handle_request(payload: Dict[str, Any]) -> Dict[str, Any]:
-    tool = payload.get("tool")
-    if tool == "hello":
-        name = payload.get("name", "world")
-        return {"ok": True, "result": hello_run(name)}
-    return {"ok": False, "error": f"Unknown tool '{tool}'"}
+from typing import Any, Dict, Optional
 
-def run_server() -> None:
-    print("MCP server started. Waiting for JSON on stdin. Ctrl+C to stop.")
-    import sys, json
-    for line in sys.stdin:
-        line = line.strip()
-        if not line:
-            continue
+import requests
+from mcp.server.fastmcp import FastMCP
+import mcp
+mcp = FastMCP("cbs")
+
+CBS_ODATA_BASE = "https://opendata.cbs.nl/ODataApi/odata"
+
+@mcp.tool()
+def get_cpi(period: str) -> str:
+    """Convenience wrapper for CPI (inflation) figures.
+
+    Parameters
+    ----------
+    period:
+        Period label understood by dataset ``84649NED``.
+        Accepts either a StatLine *Period* code (e.g. ``2024M06``)
+        **or** Dutch full‑month description such as ``\"december 2024\"``.
+
+    Returns
+    -------
+    str
+        The CPI index figure for the requested period or an error message.
+
+    Notes
+    -----
+    * **Dataset:** ``84649NED`` – *Consumer price index (2015 = 100)*.
+    * Period codes are documented by CBS and follow formats like
+      ``YYYYMmm`` (monthly) or ``YYYY`` (annual).
+    """
+
+    dataset = "84649NED"
+    # Map Dutch month names to month numbers for user convenience.
+    NL_MONTHS = {
+        "januari": "01",
+        "februari": "02",
+        "maart": "03",
+        "april": "04",
+        "mei": "05",
+        "juni": "06",
+        "juli": "07",
+        "augustus": "08",
+        "september": "09",
+        "oktober": "10",
+        "november": "11",
+        "december": "12",
+    }
+
+    period_code = period.strip()
+
+    # Convert \"december 2024\" → \"2024M12\" etc.
+    if " " in period_code and not period_code.upper().startswith("20"):
+
         try:
-            payload = json.loads(line)
-        except json.JSONDecodeError as e:
-            print(json.dumps({"ok": False, "error": f"Invalid JSON: {e}"}))
-            continue
-        response = handle_request(payload)
-        print(json.dumps(response), flush=True)
+            month_name, year = period_code.lower().split()
+            month = NL_MONTHS[month_name]
+            period_code = f"{year}M{month}"
+        except (ValueError, KeyError):
+            # Keep original if conversion fails – will be handled by API.
+            pass
+
+    params = {
+        "$format": "JSON",
+        "$select": "Period,CPI_1",
+        "$filter": f"Period eq '{period_code}'",
+    }
+    url = _build_odata_url(dataset, "TypedDataSet", params)
+    payload = _http_get(url)
+    rows = payload.get("value", [])
+
+    if not rows:
+        return f"Geen CPI‑waarde gevonden voor '{period}'. (Period code: {period_code})"
+
+    cpi = rows[0].get("CPI_1")
+    return f"CPI voor {period} ({period_code}): **{cpi}** (2015 = 100)"
+
 
 if __name__ == "__main__":
-    run_server()
+    mcp.run()
 ```
 
 ---
