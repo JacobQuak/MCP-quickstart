@@ -62,6 +62,14 @@ Hierbij is het aan te raden om in markdown een richting per tool aan te geven. E
     """
 ```
 
+## 🔍 MCP Inspector starten
+
+Omdat we `mcp[cli]` gebruiken, open je de Inspector met:
+
+```bash
+source .venv/bin/activate
+mcp dev
+```
 
 
 
